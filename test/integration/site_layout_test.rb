@@ -2,10 +2,6 @@ require 'test_helper'
 
 class SiteLayoutTest < ActionDispatch::IntegrationTest
 
-  def setup
-    @base_title = "Ruby on Rails Tutorial Sample App"
-  end
-  
   test "layout links" do
     get root_path
     assert_template 'static_pages/home'
@@ -17,7 +13,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
 
   test "signup page title is correct" do
     get signup_path
-    assert_select "title", "Sign up | #{@base_title}"
+    assert_select "title", full_title("Sign up")
   end
 
 end
