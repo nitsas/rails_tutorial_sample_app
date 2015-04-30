@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class SiteLayoutTest < ActionDispatch::IntegrationTest
+
+  def setup
+    @base_title = "Ruby on Rails Tutorial Sample App"
+  end
   
   test "layout links" do
     get root_path
@@ -9,6 +13,11 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", help_path
     assert_select "a[href=?]", about_path
     assert_select "a[href=?]", contact_path
+  end
+
+  test "signup page title is correct" do
+    get signup_path
+    assert_select "title", "Sign up | #{@base_title}"
   end
 
 end
